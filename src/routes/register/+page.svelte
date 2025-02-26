@@ -17,6 +17,38 @@
             notify("error", "Password must contain at least 10 characters");
             return;
         }
+        if(password !== confirmPassword){
+            notify("error", "Passwords do not match");
+            return;
+        }
+
+        loader = true;
+        fetch(`${import.meta.env.VITE_APIURL}/user`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                password: password,
+                confirmPassword: confirmPassword
+            })
+        })
+            .then(r=>r.json())
+            .then((response)=>{
+                if(response.error){
+                    notify("error", response.error.message);
+                }else{
+                    window.location.href = "/signup";
+                }
+            })
+            .catch((err)=>{
+                notify("error", "Something went wrong, try refreshing the page");
+            })
+            .finally(()=>{
+                loader = false;
+            });
     }
 
     const notify = (type, message)=>{
