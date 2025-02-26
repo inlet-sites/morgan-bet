@@ -27,4 +27,20 @@
         font-size: 65px;
         margin-bottom: 35px;
     }
+
+    @media screen and (max-width: 500px){
+        h1{
+            font-size: 55px;
+        }
+
+        .button{
+            display: flex;
+            flex-direction: column;
+            margin: 35px;
+        }
+
+        .buttons a{
+            padding: 15px 45px;
+        }
+    }
 </style>
