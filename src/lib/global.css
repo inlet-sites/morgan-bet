@@ -1,0 +1,32 @@
+:root{
+    --scarlet: #ff2400;
+    --claret: #89043d;
+    --prussianBlue: #1c3041;
+    --platinum: #e0e0e2;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.button{
+    font-size: 22px;
+    padding: 5px 35px;
+    background: var(--claret);
+    border-radius: 10px;
+    color: var(--platinum);
+    text-decoration: none;
+    border: 2px solid var(--claret);
+    cursor: pointer;
+}
+
+.button:hover{
+    background: rgb(112, 5, 51);
+}
+
+.button:active{
+    background: var(--platinum);
+    color: var(--claret);
+}
