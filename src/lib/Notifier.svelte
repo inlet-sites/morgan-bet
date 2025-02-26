@@ -1,102 +1,48 @@
-<div class="loader">
-    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-</div>
+<script>
+    let {type, message} = $props();
+</script>
+
+{#if type === "error"}
+    <div class="notifier {type}">
+        <svg width="35px" height="35px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" color="#000000">
+            <path d="M19.1414 5C17.3265 3.14864 14.7974 2 12 2C6.47715 2 2 6.47715 2 12C2 14.7255 3.09032 17.1962 4.85857 19M19.1414 5C20.9097 6.80375 22 9.27455 22 12C22 17.5228 17.5228 22 12 22C9.20261 22 6.67349 20.8514 4.85857 19M19.1414 5L4.85857 19" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <p>{message}</p>
+    </div>
+{:else if type === "success"}
+    <div class="notifier {type}">
+        <svg width="35px" height="35px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" color="#000000">
+            <path d="M7 12.5L10 15.5L17 8.5" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <p>{message}</p>
+    </div>
+{/if}
 
 <style>
-    .loader{
+    .notifier{
         display: flex;
-        justify-content: center;
         align-items: center;
         position: fixed;
-        top: 0;
-        left: 0;
-        height: 100vh;
-        width: 100vw;
-        background: rgba(0, 0, 0, 0.55);
-        backdrop-filter: blur(10px);
+        bottom: 15px;
+        right: 15px;
+        height: 75px;
+        z-index: 100;
+        padding: 0 35px 0 15px;
     }
 
-    .lds-spinner,
-    .lds-spinner div,
-    .lds-spinner div:after {
-      box-sizing: border-box;
+    .notifier svg{
+        margin-right: 35px;
     }
-    .lds-spinner {
-      color: currentColor;
-      display: inline-block;
-      position: relative;
-      width: 80px;
-      height: 80px;
+
+    .error{
+        background: var(--scarlet);
+        color: var(--platinum);
+        font-weight: bold;
     }
-    .lds-spinner div {
-      transform-origin: 40px 40px;
-      animation: lds-spinner 1.2s linear infinite;
-    }
-    .lds-spinner div:after {
-      content: " ";
-      display: block;
-      position: absolute;
-      top: 3.2px;
-      left: 36.8px;
-      width: 6.4px;
-      height: 17.6px;
-      border-radius: 20%;
-      background: var(--scarlet);
-    }
-    .lds-spinner div:nth-child(1) {
-      transform: rotate(0deg);
-      animation-delay: -1.1s;
-    }
-    .lds-spinner div:nth-child(2) {
-      transform: rotate(30deg);
-      animation-delay: -1s;
-    }
-    .lds-spinner div:nth-child(3) {
-      transform: rotate(60deg);
-      animation-delay: -0.9s;
-    }
-    .lds-spinner div:nth-child(4) {
-      transform: rotate(90deg);
-      animation-delay: -0.8s;
-    }
-    .lds-spinner div:nth-child(5) {
-      transform: rotate(120deg);
-      animation-delay: -0.7s;
-    }
-    .lds-spinner div:nth-child(6) {
-      transform: rotate(150deg);
-      animation-delay: -0.6s;
-    }
-    .lds-spinner div:nth-child(7) {
-      transform: rotate(180deg);
-      animation-delay: -0.5s;
-    }
-    .lds-spinner div:nth-child(8) {
-      transform: rotate(210deg);
-      animation-delay: -0.4s;
-    }
-    .lds-spinner div:nth-child(9) {
-      transform: rotate(240deg);
-      animation-delay: -0.3s;
-    }
-    .lds-spinner div:nth-child(10) {
-      transform: rotate(270deg);
-      animation-delay: -0.2s;
-    }
-    .lds-spinner div:nth-child(11) {
-      transform: rotate(300deg);
-      animation-delay: -0.1s;
-    }
-    .lds-spinner div:nth-child(12) {
-      transform: rotate(330deg);
-      animation-delay: 0s;
-    }
-    @keyframes lds-spinner {
-      0% {
-        opacity: 1;
-      }
-      100% {
-        opacity: 0;
-      }
+
+    .success{
+        background: rgba(10, 237, 2);
+        font-weight: bold;
     }
 </style>

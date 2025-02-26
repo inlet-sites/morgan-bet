@@ -1,6 +1,7 @@
 <script>
     import {onMount} from "svelte";
     import "$lib/global.css";
+    import Loader from "$lib/Loader.svelte";
     import Notifier from "$lib/Notifier.svelte";
 
     let name = $state();
@@ -9,10 +10,26 @@
     let confirmPassword = $state();
     let initialFocus = $state();
     let loader = $state(false);
+    let notifier = $state(null);
 
     const submit = ()=>{
-        loader = true;
-        setTimeout(()=>{loader = false}, 2000);
+        if(password.length < 10){
+            notify("error", "Password must contain at least 10 characters");
+            return;
+        }
+    }
+
+    const notify = (type, message)=>{
+        console.log("notifying");
+        notifier = {
+            type: type,
+            message: message
+        }
+        console.log(notifier);
+
+        setTimeout(()=>{
+            notifier = null;
+        }, 7500);
     }
 
     onMount(()=>{
@@ -21,7 +38,11 @@
 </script>
 
 {#if loader}
-    <Notifier/>
+    <Loader/>
+{/if}
+
+{#if notifier}
+    <Notifier type={notifier.type} message={notifier.message}/>
 {/if}
 
 <div class="container">
