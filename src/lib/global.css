@@ -5,6 +5,10 @@
     --platinum: #e0e0e2;
 }
 
+body{
+    background: var(--platinum);
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -29,4 +33,42 @@
 .button:active{
     background: var(--platinum);
     color: var(--claret);
+}
+
+.standardForm{
+    display: flex;
+    flex-direction: column;
+    background: var(--prussianBlue);
+    padding: 35px;
+    width: 500px;
+    color: var(--platinum);
+    border-radius: 50px;
+}
+
+.standardForm h1{
+    margin: 0 auto 35px auto;
+}
+
+.standardForm label{
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.standardForm input{
+    font-size: 22px;
+    padding: 5px 0 5px 10px;
+    background: var(--platinum);
+    border: 2px solid var(--prussianBlue);
+    color: var(--prussianBlue);
+    outline: none;
+}
+
+.standardForm input:focus{
+    border: 2px solid var(--scarlet);
+}
+
+.standardForm .button{
+    margin-top: 25px;
 }
