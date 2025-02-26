@@ -1,20 +1,31 @@
 <script>
     import {onMount} from "svelte";
     import "$lib/global.css";
+    import Notifier from "$lib/Notifier.svelte";
 
     let name = $state();
     let email = $state();
     let password = $state();
     let confirmPassword = $state();
     let initialFocus = $state();
+    let loader = $state(false);
+
+    const submit = ()=>{
+        loader = true;
+        setTimeout(()=>{loader = false}, 2000);
+    }
 
     onMount(()=>{
         initialFocus.focus();
     });
 </script>
 
+{#if loader}
+    <Notifier/>
+{/if}
+
 <div class="container">
-    <form class="standardForm">
+    <form class="standardForm" onsubmit={submit}>
         <h1>Register</h1>
 
         <label>Full Name
