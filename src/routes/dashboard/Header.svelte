@@ -6,9 +6,7 @@
     let menuOpen = $state(false);
 
     afterNavigate(()=>{
-        menuOpen = false;
-        document.body.overflow = "auto";
-        options.style.display = "none";
+        if(menuOpen) toggleMenu();
     });
 
     const toggleMenu = ()=>{
