@@ -3,6 +3,7 @@
     import {setContext} from "svelte";
     import Loader from "$lib/Loader.svelte";
     import Notifier from "$lib/Notifier.svelte";
+    import Header from "./Header.svelte";
 
     let {children} = $props();
     let loader = $state(false);
@@ -34,5 +35,7 @@
 {#if notifier}
     <Notifier type={notifier.type} message={notifier.message}/>
 {/if}
+
+<Header/>
 
 {@render children()}
