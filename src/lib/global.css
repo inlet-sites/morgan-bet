@@ -41,7 +41,6 @@ body{
     padding: 35px;
     width: 500px;
     color: var(--platinum);
-    border-radius: 50px;
 }
 
 .standardForm h1{
@@ -59,13 +58,13 @@ body{
     font-size: 22px;
     padding: 5px 0 5px 10px;
     background: var(--platinum);
-    border: 2px solid var(--prussianBlue);
+    border: 4px solid var(--prussianBlue);
     color: var(--prussianBlue);
     outline: none;
 }
 
 .standardForm input:focus{
-    border: 2px solid var(--scarlet);
+    border: 4px solid var(--scarlet);
 }
 
 .standardForm .button{

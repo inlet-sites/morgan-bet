@@ -39,7 +39,7 @@
                     notify("error", response.error.message);
                 }else{
                     localStorage.setItem("userToken", response.token);
-                    window.location.href = "/";
+                    window.location.href = "/dashboard";
                 }
             })
             .catch((err)=>{
