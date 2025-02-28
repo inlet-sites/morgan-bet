@@ -1,6 +1,6 @@
 <script>
     import "$lib/global.css";
-    import {setContext} from "svelte";
+    import {onMount, setContext} from "svelte";
     import Loader from "$lib/Loader.svelte";
     import Notifier from "$lib/Notifier.svelte";
     import Header from "./Header.svelte";
@@ -26,6 +26,12 @@
 
     setContext("notify", notify);
     setContext("loader", setLoader);
+
+    onMount(()=>{
+        const userToken = localStorage.getItem("userToken");
+        if(!userToken) window.location.href = "/";
+        setContext("userToken", userToken);
+    });
 </script>
 
 {#if loader}
