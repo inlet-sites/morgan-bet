@@ -1,7 +1,7 @@
 :root{
-    --scarlet: #ff2400;
+    --scarlet: #840239;
     --claret: #89043d;
-    --prussianBlue: #1c3041;
+    --prussianBlue: #000633;
     --platinum: #e0e0e2;
 }
 
@@ -19,7 +19,6 @@ body{
     font-size: 22px;
     padding: 5px 35px;
     background: var(--claret);
-    border-radius: 10px;
     color: var(--platinum);
     text-decoration: none;
     border: 2px solid var(--claret);

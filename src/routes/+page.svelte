@@ -1,8 +1,15 @@
 <script>
     import "$lib/global.css";
+    import logo from "$lib/images/logo.svg";
 </script>
 
 <div class="container">
+    <a href="/" class="header">
+        <img src={logo} alt="MorganBet Logo">
+        <p>Morgan Bet</p>
+    </a>
+
+    <img class="mainLogo" src={logo} alt="MorganBet Logo">
     <h1>Morgan Bet</h1>
 
     <div class="buttons">
@@ -20,6 +27,34 @@
         background: var(--platinum);
         height: 100vh;
         width: 100vw;
+        position: relative;
+    }
+
+    .header{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 10%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 15px;
+        color: var(--prussianBlue);
+        text-decoration: none;
+    }
+
+    .header img{
+        height: 100%;
+        margin-right: 15px;
+    }
+
+    .header p{
+        font-size: 35px;
+        font-weight: bold;
+    }
+
+    .mainLogo{
+        max-height: 25%;
     }
 
     h1{
