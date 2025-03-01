@@ -20,6 +20,11 @@
             options.style.display = "flex";
         }
     }
+
+    const logout = ()=>{
+        localStorage.removeItem("userToken");
+        window.location.href = "/";
+    }
 </script>
 
 <header>
@@ -29,9 +34,11 @@
     </a>
     
     <div class="options" bind:this={options}>
-        <a href="/dashboard">My Games</a>
+        <a class="optionItem" href="/dashboard">My Games</a>
         <div class="divider"></div>
-        <a href="/dashboard/find">Find Games</a>
+        <a class="optionItem" href="/dashboard/find">Find Games</a>
+        <div class="divider"></div>
+        <button class="optionItem" onclick={logout}>Logout</button>
     </div>
 
     <button class="hamburger" aria-label="menu" onclick={toggleMenu}>
@@ -72,10 +79,17 @@
         padding-right: 35px;
     }
 
-    .options a{
+    .optionItem{
         color: var(--platinum);
         font-size: 20px;
         text-decoration: none;
+        background: none;
+        border: none;
+    }
+
+    .optionItem:hover{
+        color: var(--scarlet);
+        cursor: pointer;
     }
 
     .divider{
