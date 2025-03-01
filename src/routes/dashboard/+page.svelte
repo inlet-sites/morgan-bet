@@ -8,12 +8,13 @@
     let games = $state([]);
 
     onMount(()=>{
+        console.log(userToken);
         loader(true);
         fetch(`${import.meta.env.VITE_APIURL}/rankinggame`, {
             method: "get",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${userToken}`
+                Authorization: `Bearer ${localStorage.getItem("userToken")}`
             }
         })
             .then(r=>r.json())

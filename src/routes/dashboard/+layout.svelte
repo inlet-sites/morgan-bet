@@ -1,6 +1,7 @@
 <script>
     import "$lib/global.css";
     import {onMount, setContext} from "svelte";
+    import {writable} from "svelte/store";
     import Loader from "$lib/Loader.svelte";
     import Notifier from "$lib/Notifier.svelte";
     import Header from "./Header.svelte";
@@ -24,13 +25,40 @@
         }, 7500);
     }
 
+    setLoader(true);
+
+    const user = writable();
+    setContext("user", user);
     setContext("notify", notify);
     setContext("loader", setLoader);
 
     onMount(()=>{
         const userToken = localStorage.getItem("userToken");
         if(!userToken) window.location.href = "/";
-        setContext("userToken", userToken);
+
+        fetch(`${import.meta.env.VITE_APIURL}/user`, {
+            method: "get",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${userToken}`
+            }
+        })
+            .then(r=>r.json())
+            .then((response)=>{
+                if(response.error){
+                    localStorage.removeItem("userToken");
+                    window.location.href="/";
+                }else{
+                    user.set(response);
+                }
+            })
+            .catch((err)=>{
+                localStorage.removeItem("userToken");
+                window.location.href="/";
+            })
+            .finally(()=>{
+                setLoader(false);
+            });
     });
 </script>
 
