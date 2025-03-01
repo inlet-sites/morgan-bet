@@ -1,9 +1,11 @@
 <script>
     import logo from "$lib/images/logo.svg";
+    import {getContext} from "svelte";
     import {afterNavigate} from "$app/navigation";
 
     let options = $state();
     let menuOpen = $state(false);
+    let user = getContext("user");
 
     afterNavigate(()=>{
         if(menuOpen) toggleMenu();
@@ -37,6 +39,10 @@
         <a class="optionItem" href="/dashboard">My Games</a>
         <div class="divider"></div>
         <a class="optionItem" href="/dashboard/find">Find Games</a>
+        {#if $user && $user.permissions.includes("createGame")}
+            <div class="divider"></div>
+            <a class="optionItem" href="/dashboard/create-game">Create Game</a>
+        {/if}
         <div class="divider"></div>
         <button class="optionItem" onclick={logout}>Logout</button>
     </div>

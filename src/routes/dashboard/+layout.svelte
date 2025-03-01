@@ -49,6 +49,7 @@
                     localStorage.removeItem("userToken");
                     window.location.href="/";
                 }else{
+                    console.log(response);
                     user.set(response);
                 }
             })
