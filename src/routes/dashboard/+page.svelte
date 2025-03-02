@@ -8,7 +8,6 @@
     let games = $state([]);
 
     onMount(()=>{
-        console.log(userToken);
         loader(true);
         fetch(`${import.meta.env.VITE_APIURL}/rankinggame`, {
             method: "get",

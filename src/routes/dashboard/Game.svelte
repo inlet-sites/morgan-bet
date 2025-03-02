@@ -1,6 +1,6 @@
 <script>
     let {game} = $props();
-    let link = $state(`/dashboard/rankinggame/${game.id}`);
+    let link = $state(`/dashboard/ranking-game/${game.id}`);
 </script>
 
 <a href={link} class="Game">

@@ -59,15 +59,38 @@ body{
     font-size: 22px;
     padding: 5px 0 5px 10px;
     background: var(--platinum);
-    border: 4px solid var(--prussianBlue);
+    border: 3px solid var(--prussianBlue);
     color: var(--prussianBlue);
     outline: none;
 }
 
 .standardForm input:focus{
-    border: 4px solid var(--scarlet);
+    border: 3px solid var(--scarlet);
 }
 
 .standardForm .button{
     margin-top: 25px;
+}
+
+.optionButton{
+    display: flex;
+    align-items: center;
+    height: 75px;
+    width: 100%;
+    max-width: 750px;
+    background: var(--prussianBlue);
+    color: var(--platinum);
+    border: 3px solid var(--prussianBlue);
+    cursor: pointer;
+    margin: 15px 0;
+    text-decoration: none;
+}
+
+.optionButton:hover{
+    border: 3px solid var(--scarlet);
+}
+
+.optionButton img{
+    height: 100%;
+    margin-right: 35px;
 }

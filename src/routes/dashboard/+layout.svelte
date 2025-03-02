@@ -1,6 +1,7 @@
 <script>
     import "$lib/global.css";
     import {onMount, setContext} from "svelte";
+    import {goto} from "$app/navigation";
     import {writable} from "svelte/store";
     import Loader from "$lib/Loader.svelte";
     import Notifier from "$lib/Notifier.svelte";
@@ -34,7 +35,7 @@
 
     onMount(()=>{
         const userToken = localStorage.getItem("userToken");
-        if(!userToken) window.location.href = "/";
+        if(!userToken) goto("/");
 
         fetch(`${import.meta.env.VITE_APIURL}/user`, {
             method: "get",
@@ -47,15 +48,14 @@
             .then((response)=>{
                 if(response.error){
                     localStorage.removeItem("userToken");
-                    window.location.href="/";
+                    goto("/");
                 }else{
-                    console.log(response);
                     user.set(response);
                 }
             })
             .catch((err)=>{
                 localStorage.removeItem("userToken");
-                window.location.href="/";
+                goto("/");
             })
             .finally(()=>{
                 setLoader(false);
