@@ -59,6 +59,14 @@
                 <button>{player.name}</button>
             {/each}
         </div>
+
+        <div class="teams">
+            {#each player?.picks as pick}
+                <div class="team">
+
+                </div>
+            {/each}
+        </div>
     {/if}
 </div>
 

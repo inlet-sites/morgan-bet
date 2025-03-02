@@ -36,7 +36,6 @@
                 }
             })
             .catch((err)=>{
-                console.log(err);
                 notify("error", "Something went wrong, try refreshing the page");
             })
             .finally(()=>{
@@ -182,5 +181,38 @@
 
     .no{
         background: var(--scarlet);
+    }
+
+    @media screen and (max-width: 750px){
+        .team{
+            flex-direction: column;
+            align-items: flex-start;
+            height: initial;
+            position: relative;
+            padding: 15px;
+        }
+
+        .team img{
+            width: 75px;
+        }
+
+        .points{
+            margin-left: initial;
+        }
+
+        .teamButtons{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+        }
+
+        .teamButtons svg{
+            height: 55px;
+            width: 55px;
+        }
     }
 </style>
