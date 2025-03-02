@@ -206,5 +206,12 @@
             margin-left: 0;
             font-size: 18px;
         }
+
+        .gameButtons{
+            display: flex;
+            justify-content: space-around;
+            position: static;
+            width: 250px;
+        }
     }
 </style>
