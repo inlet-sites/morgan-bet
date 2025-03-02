@@ -3,6 +3,7 @@
     import "$lib/global.css";
     import Loader from "$lib/Loader.svelte";
     import Notifier from "$lib/Notifier.svelte";
+    import LogoHeader from "$lib/LogoHeader.svelte";
 
     let name = $state();
     let email = $state();
@@ -52,12 +53,10 @@
     }
 
     const notify = (type, message)=>{
-        console.log("notifying");
         notifier = {
             type: type,
             message: message
         }
-        console.log(notifier);
 
         setTimeout(()=>{
             notifier = null;
@@ -78,6 +77,8 @@
 {/if}
 
 <div class="container">
+    <LogoHeader/>
+
     <form class="standardForm" onsubmit={submit}>
         <h1>Register</h1>
 

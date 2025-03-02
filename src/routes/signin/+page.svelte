@@ -3,6 +3,7 @@
     import "$lib/global.css";
     import Loader from "$lib/Loader.svelte";
     import Notifier from "$lib/Notifier.svelte";
+    import LogoHeader from "$lib/LogoHeader.svelte";
 
     let email = $state();
     let password = $state();
@@ -64,6 +65,8 @@
 {/if}
 
 <div class="container">
+    <LogoHeader/>
+
     <form class="standardForm" onsubmit={submit}>
         <h1>Sign In</h1>
 
