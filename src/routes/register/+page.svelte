@@ -40,7 +40,7 @@
                 if(response.error){
                     notify("error", response.error.message);
                 }else{
-                    window.location.href = "/signup";
+                    window.location.href = "/signin";
                 }
             })
             .catch((err)=>{

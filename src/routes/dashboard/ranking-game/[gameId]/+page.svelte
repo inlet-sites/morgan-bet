@@ -1,5 +1,5 @@
 <script>
-    import {onMount, getContext} from "svelte";
+    import {onMount, getContext, tick} from "svelte";
     import MakePicks from "./MakePicks.svelte";
 
     const loader = getContext("loader");
@@ -10,6 +10,7 @@
     let teams = $state();
     let player = $state();
     let ready = $state(false);
+    let select = $state();
     const apiUrl = import.meta.env.VITE_APIURL;
 
     const addPicks = (picks)=>{
@@ -25,6 +26,10 @@
         return total;
     }
 
+    const updatePlayer = ()=>{
+        player = game.players.find(p => p.user === select.value);
+    }
+
     onMount(()=>{
         loader(true);
         const userToken = localStorage.getItem("userToken");
@@ -36,11 +41,10 @@
             }
         })
             .then(r=>r.json())
-            .then((response)=>{
+            .then(async (response)=>{
                 if(response.error){
                     notify("error", response.error.message);
                 }else{
-                    console.log(response);
                     game = response.game;
                     teams = response.teams;
                     player = game.players.find(p => p.user === $user.id);
@@ -48,6 +52,7 @@
                 }
             })
             .catch((err)=>{
+                console.log(err);
                 notify("error", "Something went wrong, try refreshing the page");
             })
             .finally(()=>{
@@ -57,7 +62,7 @@
 </script>
 
 <div class="RankingGame">
-    {#if player?.picks.length === 0}
+    {#if game?.players.find(p => p.user === $user.id).picks.length === 0}
         <MakePicks
             teams={teams}
             gameId={game._id}
@@ -66,23 +71,27 @@
     {:else if ready}
         <h1>{game.name}</h1>
 
-        <select>
+        <select value={player?.user} onchange={updatePlayer} bind:this={select}>
             {#each game.players as p}
-                <option onchange={()=>{player = p}}>{p.name}</option>
+                <option value={p.user}>{p.name}</option>
             {/each}
         </select>
 
-        <p class="total">Total: <span class="scarlet">{calculateTotal()}</span></p>
-        <div class="teams">
-            {#each player.picks as p, i}
-                {@const team = teams.find(t => t.id === p)}
-                <div class="team">
-                    <img src="/mlbLogos/{team.name.replaceAll(" ", "")}.png" alt="{team.name} logo">
-                    <p>{team.name}</p>
-                    <p class="calcs">{team.wins} wins x {teams.length - i} pts/game = <span class="scarlet">{team.wins * (teams.length - i)}</span></p>
-                </div>
-            {/each}
-        </div>
+        {#if player.picks.length === 0}
+            <h1 class="nopicks">{player.name} has not yet made his/her picks</h1>
+        {:else}
+            <p class="total">Total: <span class="scarlet">{calculateTotal()}</span></p>
+            <div class="teams">
+                {#each player.picks as p, i}
+                    {@const team = teams.find(t => t.id === p)}
+                    <div class="team">
+                        <img src="/mlbLogos/{team.name.replaceAll(" ", "")}.png" alt="{team.name} logo">
+                        <p>{team.name}</p>
+                        <p class="calcs">{team.wins} wins x {teams.length - i} pts/game = <span class="scarlet">{team.wins * (teams.length - i)}</span></p>
+                    </div>
+                {/each}
+            </div>
+        {/if}
     {/if}
 </div>
 
@@ -129,5 +138,10 @@
         font-size: 22px;
         padding: 5px 15px;
         border: 1px solid var(--scarlet);
+    }
+
+    .nopicks{
+        font-size: 35px;
+        margin-top: 35px;
     }
 </style>

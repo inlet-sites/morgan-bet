@@ -17,7 +17,7 @@
         loader(true);
         const teamList = [];
         for(let i = 0; i < teams.length; i++){
-            teamList.push(teams[i]._id);
+            teamList.push(teams[i].id);
         }
         fetch(`${import.meta.env.VITE_APIURL}/rankinggame/${gameId}/picks`, {
             method: "put",
