@@ -144,4 +144,22 @@
         font-size: 35px;
         margin-top: 35px;
     }
+
+    @media screen and (max-width: 750px){
+        .team{
+            flex-direction: column;
+            align-items: flex-start;
+            height: initial;
+            padding: 15px;
+        }
+
+        .team img{
+            width: 75px;
+        }
+
+        .calcs{
+            margin-left: 0;
+            font-size: 18px;
+        }
+    }
 </style>
