@@ -39,7 +39,7 @@
 </script>
 
 <div class="ViewRequests">
-    {#if requests.length === 0}
+    {#if !requests}
         <h1>No current requests</h1>
     {:else}
         <h1>Player Requests</h1>
