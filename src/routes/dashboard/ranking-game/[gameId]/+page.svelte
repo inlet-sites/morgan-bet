@@ -1,6 +1,8 @@
 <script>
     import {onMount, getContext, tick} from "svelte";
     import MakePicks from "./MakePicks.svelte";
+    import ViewRequests from "./ViewRequests.svelte";
+    import Rankings from "./Rankings.svelte";
 
     const loader = getContext("loader");
     const notify = getContext("notify");
@@ -11,6 +13,8 @@
     let player = $state();
     let ready = $state(false);
     let select = $state();
+    let viewRequests = $state(false);
+    let viewRankings = $state(false);
     const apiUrl = import.meta.env.VITE_APIURL;
 
     const addPicks = (picks)=>{
@@ -28,6 +32,14 @@
 
     const updatePlayer = ()=>{
         player = game.players.find(p => p.user === select.value);
+    }
+
+    const userAccepted = (user)=>{
+        game.players.push({
+            user: user._id,
+            name: user.name,
+            picks: []
+        });
     }
 
     onMount(()=>{
@@ -68,7 +80,27 @@
             gameId={game._id}
             addPicks={(p)=>{player.picks = p}}
         />
+    {:else if viewRequests}
+        <ViewRequests
+            requests={game.joinRequests}
+            gameId={game.id}
+            accept={userAccepted}
+            close={()=>{viewRequests = false}}
+        />
+    {:else if viewRankings}
+        <Rankings
+            players={game.players}
+            teams={teams}
+            close={()=>{viewRankings = false}}
+        />
     {:else if ready}
+        <div class="gameButtons">
+            {#if game.owner === $user.id}
+                <button class="button" onclick={()=>{viewRequests = true}}>Join Requests</button>
+            {/if}
+            <button class="button" onclick={()=>{viewRankings = true}}>Rankings</button>
+        </div>
+
         <h1>{game.name}</h1>
 
         <select value={player?.user} onchange={updatePlayer} bind:this={select}>
@@ -98,6 +130,7 @@
 <style>
     .RankingGame{
         padding: 35px;
+        position: relative;
     }
 
     .team{
@@ -143,6 +176,18 @@
     .nopicks{
         font-size: 35px;
         margin-top: 35px;
+    }
+
+    .gameButtons{
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 35px;
+        right: 35px;
+    }
+
+    .gameButtons > *{
+        margin: 10px 0;
     }
 
     @media screen and (max-width: 750px){
