@@ -41,11 +41,14 @@
                 }else{
                     game = response.game;
                     teams = response.teams;
-                    if(game.players.find(p => p.user === $user.id).picks.length === 0) makePicks = true;
+                    try{
+                        if(game.players.find(p => p.user === $user.id).picks.length === 0) makePicks = true;
+                    }catch(e){}
                     ready = true;
                 }
             })
             .catch((err)=>{
+                console.log(err);
                 notify("error", "Something went wrong, try refreshing the page");
             })
             .finally(()=>{
