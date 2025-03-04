@@ -7,6 +7,7 @@
 
     const loader = getContext("loader");
     const notify = getContext("notify");
+    const user = getContext("user");
     const {data}  = $props();
     let game = $state();
     let teams = $state();
@@ -40,6 +41,7 @@
                 }else{
                     game = response.game;
                     teams = response.teams;
+                    if(game.players.find(p => p.user === $user.id).picks.length === 0) makePicks = true;
                     ready = true;
                 }
             })
