@@ -11,6 +11,10 @@
     </a>
 </div>
 
+<svelte:head>
+    <title>Create Game | MorganBet</title>
+</svelte:head>
+
 <style>
     .CreateGame{
         padding: 35px;

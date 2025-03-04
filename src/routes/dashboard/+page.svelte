@@ -33,6 +33,10 @@
     });
 </script>
 
+<svelte:head>
+    <title>My Games | MorganBet</title>
+</svelte:head>
+
 <div class="Dashboard">
     <h1>My Games</h1>
 

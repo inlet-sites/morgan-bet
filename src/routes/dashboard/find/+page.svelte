@@ -69,6 +69,10 @@
     });
 </script>
 
+<svelte:head>
+    <title>Find Games | MorganBet</title>
+</svelte:head>
+
 <div class="FindGames">
     {#if joinModal}
         <div class="joinModal">

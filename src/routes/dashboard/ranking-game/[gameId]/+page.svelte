@@ -57,12 +57,16 @@
     });
 </script>
 
+<svelte:head>
+    <title>Ranking Game | MorganBet</title>
+</svelte:head>
+
 <div class="RankingGame">
     {#if ready}
         {#if makePicks}
             <MakePicks
                 teams={teams}
-                gameId={game._id}
+                gameId={game.id}
                 addPicks={(p)=>{player.picks = p}}
             />
         {:else if viewRequests}

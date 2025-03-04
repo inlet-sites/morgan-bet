@@ -13,6 +13,10 @@
     }
 </script>
 
+<svelte:head>
+    <title>404 Error | MorganBet</title>
+</svelte:head>
+
 <div class="container">
     <LogoHeader/>
 

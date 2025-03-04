@@ -62,6 +62,10 @@
     }
 </script>
 
+<svelte:head>
+    <title>Create Ranking Game | MorganBet</title>
+</svelte:head>
+
 <div class="CreateRankingGame">
     <h1>Create New Ranking Game</h1>
 

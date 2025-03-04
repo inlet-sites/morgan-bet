@@ -76,6 +76,10 @@
     <Notifier type={notifier.type} message={notifier.message}/>
 {/if}
 
+<svelte:head>
+    <title>Register | MorganBet</title>
+</svelte:head>
+
 <div class="container">
     <LogoHeader/>
 

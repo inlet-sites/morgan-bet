@@ -13,6 +13,10 @@
     }
 </script>
 
+<svelte:head>
+    <title>MorganBet</title>
+</svelte:head>
+
 <div class="container">
     <LogoHeader/>
 
