@@ -32,7 +32,7 @@
         </div>
     {/each}
 
-    <div class="button close" onclick={close}>Back</div>
+    <button class="button close" onclick={close}>Back</button>
 </div>
 
 <style>

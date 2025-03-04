@@ -71,13 +71,13 @@
                 <p class="points"><span class="scarlet">{i+1}</span>: {teams.length-i} pts/game</p>
 
                 <div class="teamButtons">
-                    <button onclick={()=>{move(i, 1)}}>
+                    <button aria-label="Move up" onclick={()=>{move(i, 1)}}>
                         <svg width="24px" height="24px" stroke-width="2.5" viewBox="0 0 24 24" fill="none" color="currentColor">
                             <path d="M6 15L12 9L18 15" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg>
                     </button>
 
-                    <button onclick={()=>{move(i, -1)}}>
+                    <button aria-label="Move down" onclick={()=>{move(i, -1)}}>
                         <svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" color="currentColor">
                             <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg>
