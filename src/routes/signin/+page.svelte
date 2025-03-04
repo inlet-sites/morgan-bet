@@ -61,7 +61,7 @@
 {/if}
 
 {#if notifier}
-    <Notifier type={notifer.type} message={notifier.message}/>
+    <Notifier type={notifier.type} message={notifier.message}/>
 {/if}
 
 <div class="container">
