@@ -35,6 +35,7 @@
             .finally(()=>{
                 loader(false);
             });
+
     }
 </script>
 
