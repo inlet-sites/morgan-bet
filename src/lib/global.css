@@ -24,6 +24,7 @@ body{
     text-decoration: none;
     border: 2px solid var(--claret);
     cursor: pointer;
+    font-family: "noto sans";
 }
 
 .button:hover{

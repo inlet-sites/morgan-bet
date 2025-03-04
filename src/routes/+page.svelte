@@ -1,7 +1,16 @@
 <script>
     import "$lib/global.css";
+    import {goto} from "$app/navigation";
     import logo from "$lib/images/logo.svg";
     import LogoHeader from "$lib/LogoHeader.svelte";
+
+    const signin = ()=>{
+        if(localStorage.getItem("userToken")){
+            goto("/dashboard");
+        }else{
+            goto("/signin");
+        }
+    }
 </script>
 
 <div class="container">
@@ -11,7 +20,7 @@
     <h1>Morgan Bet</h1>
 
     <div class="buttons">
-        <a class="button" href="/signin">Sign In</a>
+        <button class="button" onclick={signin}>Sign In</button>
         <a class="button" href="/register">Sign Up</a>
     </div>
 </div>
